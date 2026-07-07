@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Custom CSS Variable Mappings */
+:root {
+  --bg-primary: #1a1612;        /* dark charcoal, night station */
+  --bg-surface: #231f1a;        /* slightly lighter surface */
+  --bg-card: #2a2420;           /* card background */
+  --accent: #f5a623;            /* amber — IR departure board orange */
+  --accent-dim: rgba(245, 166, 35, 0.12);
+  --text-primary: #e8e0d0;      /* aged paper/cream */
+  --text-secondary: #a89880;    /* muted warm brown */
+  --text-faint: #5c5248;        /* very muted */
+  --border: #3d3530;            /* warm dark border */
+  --border-accent: rgba(245, 166, 35, 0.25);
+  --success: #27ae60;           /* "on time" green */
+  --success-dim: rgba(39, 174, 96, 0.08);
+  --warning: #f39c12;           /* borderline yellow */
+  --warning-dim: rgba(243, 156, 18, 0.08);
+  --danger: #c0392b;            /* "cancelled" red */
+  --danger-dim: rgba(192, 57, 43, 0.08);
+}
+
+/* Global Styles */
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* Station Board / Physical Ticket Typography helpers */
+.font-rail-mono {
+  font-family: var(--font-mono);
+}
+
+.font-rail-sans {
+  font-family: var(--font-sans);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+/* Split Flap Board Animations */
+@keyframes mechanical-flap {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(-90deg);
+    filter: brightness(0.6);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.animate-flap {
+  animation: mechanical-flap 0.15s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Ticket tear edges & perforated borders */
+.ticket-perforation-v {
+  background-image: radial-gradient(circle, var(--bg-primary) 5px, transparent 6px);
+  background-size: 16px 16px;
+  background-position: center;
+  width: 16px;
+}
+
+.ticket-perforation-h {
+  background-image: radial-gradient(circle, var(--bg-primary) 5px, transparent 6px);
+  background-size: 16px 16px;
+  background-position: left center;
+  height: 16px;
+}
+
+/* Custom terminal scanline overlay for station atmosphere */
+.station-grid::after {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 9999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Glow effects for amber displays */
+.amber-glow {
+  text-shadow: 0 0 8px rgba(245, 166, 35, 0.5), 0 0 15px rgba(245, 166, 35, 0.2);
+}
+
+.border-glow {
+  box-shadow: 0 0 10px rgba(245, 166, 35, 0.1), inset 0 0 5px rgba(245, 166, 35, 0.05);
+}

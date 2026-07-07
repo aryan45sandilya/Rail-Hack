@@ -1,0 +1,6 @@
+{
+  "name": "RailHack",
+  "description": "Indian Railways waitlist confirmation predictor with physical ticket styling and mechanical split-flap displays.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
