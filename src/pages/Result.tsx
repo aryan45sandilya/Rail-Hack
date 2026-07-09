@@ -30,7 +30,7 @@ export default function Result({ formData, result, onBack }: ResultProps) {
   useEffect(() => {
     const fetchTrainStats = async () => {
       try {
-        const res = await fetch(`/api/trains/${formData.train_number}`);
+        const res = await fetch(`/api/trains/${formData.train_number}/stats`);
         if (res.ok) {
           const stats = await res.json();
           setTrainName(stats.train_name);
