@@ -209,12 +209,12 @@ def get_route_trains(source: str, destination: str):
                         tr.train_name,
                         t.coach_class,
                         t.quota,
-                        ROUND(AVG(CASE WHEN t.confirmed = 1 THEN 100.0 ELSE 0.0 END), 1) as avg_confirm_rate,
+                        ROUND(CAST(AVG(CASE WHEN t.confirmed = TRUE THEN 100.0 ELSE 0.0 END) AS numeric), 1) as avg_confirm_rate,
                         COUNT(*) as total_tickets
                     FROM tickets t
                     JOIN trains tr ON t.train_id = tr.id
                     WHERE t.route_id = :route_id
-                    GROUP BY tr.train_number, tr.train_name
+                    GROUP BY tr.train_number, tr.train_name, t.coach_class, t.quota
                     ORDER BY total_tickets DESC, avg_confirm_rate DESC
                     LIMIT 8
                 """)
