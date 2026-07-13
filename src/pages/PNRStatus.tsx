@@ -104,6 +104,14 @@ export default function PNRStatus() {
         </div>
       </div>
 
+      {/* Demo disclaimer */}
+      <div className="flex items-start gap-2 bg-[#1e1610] border border-[#f5a62340] rounded-lg px-4 py-3">
+        <AlertTriangle className="w-4 h-4 text-[#f5a623] shrink-0 mt-0.5" />
+        <p className="text-[11px] font-mono text-[#a89880] leading-relaxed">
+          <span className="text-[#f5a623] font-bold">DEMO MODE</span> — This is a demonstration using simulated PNR data. Results do not reflect real IRCTC records. Use the sample PNRs below to explore the feature.
+        </p>
+      </div>
+
       {/* Input */}
       <div className="bg-[#231f1a] border border-[#3d3530] rounded-xl p-6 space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">
